@@ -19,11 +19,9 @@ class CreateProductsTable extends Migration
             $table->string('vendor')->default('não definido');
             $table->string('brand')->default('sem marca');
             $table->string('description')->nullable();
-            $table->double('unitPrice')->default(0);
-            $table->integer('quantity')->default(1);
-            $table->date('production')->nullable();
-            $table->date('expiration')->nullable();
-            $table->string('batch')->nullable();
+            $table->integer('product_type_id');
+            $table->integer('product_category_id');//panificação, pastelaria, pizzaria
+            $table->string('unit');
             $table->timestamps();
         });
     }
