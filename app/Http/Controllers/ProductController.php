@@ -22,12 +22,37 @@ class ProductController extends Controller
     public function create() {
         $productTypes = ProductType::all();
         $productCategories = ProductCategory::all();
+        $products = Product::all();
 
-        return view('product.create', compact('productTypes', 'productCategories'));
+        return view('product.create', compact('productTypes', 'productCategories', 'products'));
     }
 
     public function store(Request $request) {
+        $this->validate($request, [
+            'name' => 'required',
+            'vendor' => 'required',
+            'brand' => 'required',
+            'unit' => 'required'
+        ]);
 
+
+        try{
+            $product = new Product();
+            $product->name = $request->name;
+            $product->description = $request->description;
+            $product->vendor = $request->vendor;
+            $product->brand = $request->brand;
+            $product->unit = $request->unit;
+            $product->product_type_id = $request->productType;
+            $product->product_category_id = $request->productCategory;
+
+            $product->save();
+
+            return back();
+
+        } catch(Exception $e) {
+            dd($e);
+        }
     }
 
     public function update(Request $reqeust, $id) {

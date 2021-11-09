@@ -10,17 +10,17 @@ class WarehouseTypeController extends Controller
     public function index() {
         $warehouseTypes = WarehouseType::all();
 
-        return view('warehouse.index', $warehouseTypes == null? ['warehouseTypes'=>null] : compact($warehouseTypes));
+        return view('warehouseType.index', $warehouseTypes == null? ['warehouseTypes'=>null] : compact($warehouseTypes));
     }
 
     public function show($id) {
         $warehouseType = WarehouseType::find($id);
-        return view('warehouse.show', $warehouseType == null? ['warehouseType'=>null] : compact($warehouseType));
+        return view('warehouseType.show', $warehouseType == null? ['warehouseType'=>null] : compact($warehouseType));
     }
 
     public function create() {
         $warehouseTypes = WarehouseType::all();
-        return view('warehouse.create', compact($warehouseTypes));
+        return view('warehouseType.create', compact($warehouseTypes));
     }
 
     public function store(Request $request) {

@@ -2,7 +2,7 @@
 
 @section('content')
 <br />
-<form method="POST" action="/product-category">
+<form method="POST" action="/product">
     @csrf
   <div class="form-group">
     <input type="text" name="name" class="form-control" id="exampleFormControlInput1" placeholder="Produto">
@@ -33,8 +33,8 @@
         <div class="col-md-4">
             @if(isset($productTypes))
                 <div class="form-group">
-                    <label for="unit">Tipos de produto
-                        <select name="unit" class="form-control" id="exampleFormControlInput4" placeholder="Unidade de medida.">
+                    <label for="productType">Tipos de produto
+                        <select name="productType" class="form-control" id="exampleFormControlInput4" placeholder="Unidade de medida.">
                             @foreach($productTypes as $productType)
                                 <option value="{{$productType->id}}">{{$productType->name}}</option>
                             @endForeach
@@ -46,8 +46,8 @@
         <div class="col-md-4">
             @if(isset($productCategories))
                 <div class="form-group">
-                    <label for="unit">Categoria do produto
-                        <select name="unit" class="form-control" id="exampleFormControlInput4" placeholder="Unidade de medida.">
+                    <label for="productCategory">Categoria do produto
+                        <select name="productCategory" class="form-control" id="exampleFormControlInput4" placeholder="Unidade de medida.">
                             @foreach($productCategories as $productCategory)
                                 <option value="{{$productCategory->id}}">{{$productCategory->name}}</option>
                             @endForeach
@@ -65,7 +65,7 @@
   <input type="submit" class="btn btn-primary btn-lg btn-block" value="Salvar" />
 </form>
 
-@if(isset($productCategories))
+@if(isset($products))
 <br>
 <hr>
 <br>
@@ -73,7 +73,7 @@
 
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Gestão de categorias de produto</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Gestão de produtos</h6>
     </div>
     <div class="card-body">
         <div class="row">
@@ -83,13 +83,15 @@
                 <tbody>
                     <tr class="odd">
                         <td class="sorting_1">Nome</td>
-                        <td>Descrição</td>
+                        <td>Marca</td>
+                        <td>Fornecedor</td>
                         <td>Acções</td>
                     </tr>
-                    @foreach($productCategories as $productCategory)
+                    @foreach($products as $product)
                     <tr class="odd">
-                        <td class="sorting_1">{{$productCategory->name}}</td>
-                        <td>{{$productCategory->description}}</td>
+                        <td class="sorting_1">{{$product->name}}</td>
+                        <td>{{$product->brand}}</td>
+                        <td>{{$product->vendor}}</td>
                         <td>Acções</td>
                     </tr>
                     @endForeach

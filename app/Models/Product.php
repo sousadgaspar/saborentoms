@@ -9,6 +9,8 @@ class Product extends Model
 {
     use HasFactory;
 
+    public $fillable = ['name', 'description', 'vendor', 'brand', 'unit', 'product_type_id', 'product_category_id'];
+
     public function warehouseType() {
         return $this->belongsTo(WarehouseType::class);
     }
