@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Production extends Model
 {
     use HasFactory;
+
+    public function recipe() {
+        return $this->hasOne(Recipe::class);
+    }
 }
